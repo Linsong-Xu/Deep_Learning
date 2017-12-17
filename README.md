@@ -22,3 +22,5 @@
 
 [3] : A Practical Guide to Training Restricted Boltzmann Machines
 
+[4] : [Training a deep autoencoder or a classifier on MNIST digits](http://www.cs.toronto.edu/~hinton/MatlabForSciencePaper.html)
+
