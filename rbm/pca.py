@@ -90,4 +90,3 @@ pca = PCA(n_components=2)
 X_new = pca.fit_transform(X)
 
 display_reduced(X_new, labels[:,0])
-
