@@ -21,3 +21,6 @@ def generate(train_images,test_images):
 		testbatches[:,:,i] = shuffle[i*batchsize:(i+1)*batchsize,:]
 
 	return batchdata, testbatches
+
+
+

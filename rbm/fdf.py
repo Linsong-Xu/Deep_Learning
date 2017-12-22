@@ -14,6 +14,7 @@ def get_fdf(data,VV,Dim):
 		w8(1001,784)
 		l1~l9:784,1000,500,250,2,250,500,1000,784
 	'''
+	numcases = 1000
 	l1=Dim[0];l2=Dim[1];l3=Dim[2];l4=Dim[3];l5=Dim[4];l6=Dim[5];l7=Dim[6];l8=Dim[7];l9=Dim[8]
 
 	N = data.shape[0]

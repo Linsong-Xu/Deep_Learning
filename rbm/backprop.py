@@ -113,3 +113,11 @@ def fine_tuning(rbm1, rbm2, rbm3, rbm4, train_images, test_images, maxepoch=200)
 			VV = minimize.get_minimize(f, df, data, VV, Dim, max_iter)
 
 	return VV, Dim
+
+
+
+
+
+
+
+

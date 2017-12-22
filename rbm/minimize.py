@@ -1,6 +1,7 @@
 import numpy as np
 import fdf
 def get_minimize(f, df, data, X, Dim, max_iter):
+	realmin = 2.2251*10**-308
 	INT = 0.1; EXT = 3.0; MAX = 20; RATIO = 10; SIG = 0.1; RHO = SIG/2
 	red = 1; length = max_iter; S = 'Linesearch'
 	i = 0; ls_failed = 0; f0 = f; df0 = df; fX = f0
@@ -22,11 +23,12 @@ def get_minimize(f, df, data, X, Dim, max_iter):
 			x2 = 0;f2 = f0;d2 = d0;f3 = f0;df3 = df0
 			success = 0
 			while (not success) and M > 0:
-				try:
-					M = M-1;i=i+(length<0)
-					f3,df3 = fdf.get_fdf(data, X+x3*s, Dim)
-				except:
+				M = M-1;i=i+(length<0)
+				f3,df3 = fdf.get_fdf(data, X+x3*s, Dim)
+				if np.isnan(f3) or np.isinf(f3) or (np.isnan(df3)+np.isinf(df3)).any():
 					x3 = (x2+x3)/2
+				else:
+					success = 1
 
 			if f3<F0:
 				X0 = X+x3*s
@@ -41,7 +43,7 @@ def get_minimize(f, df, data, X, Dim, max_iter):
 			A=6*(f1-f2)+3*(d2+d1)*(x2-x1)
 			B=3*(f2-f1)-(2*d1+d2)*(x2-x1)
 			x3 = x1-d1*(x2-x1)**2/(B+(B*B-A*d1*(x2-x1))**0.5)
-			if not (np.isreal(x3)) or np.isnan(x3) or np.isinf(x3) or x3<0:
+			if (not np.isreal(x3)) or np.isnan(x3) or np.isinf(x3) or x3<0:
 				x3 = x2*EXT
 			elif x3 > x2*EXT:
 				x3 = x2*EXT
@@ -83,7 +85,7 @@ def get_minimize(f, df, data, X, Dim, max_iter):
 			df0 = df3
 			d3=d0; d0=np.dot(df0.T,s)
 			if d0 > 0:
-				s=-dF0
+				s=-df0
 				d0 = -np.dot(s.T,s)
 			x3 = x3*min(RATIO,d3/(d0-realmin))
 			ls_failed=0
