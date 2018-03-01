@@ -13,7 +13,7 @@
      <img src='https://github.com/Linsong-Xu/Deep_Learning/blob/master/rbm/pca_reduce.png'>
     </div>
   
-  * Run reducing_with_rbm.py, this code uses 784-1000-500-250-2 RBMs to train a model that can reduce the dimensionality of MNIST data from 784 to 2 
+  * Run reducing_with_rbm.py, this code uses 784-1000-500-250-2 RBMs to train a model that can reduce the dimensionality of MNIST data from 784 to 2. Then fed the 784-dimension data to the 4-layers RBM model, and get the 2-dimension result. It will consume lots of time, so I don't get the result.(I reduce the maxepoch, but don't get the expected result as paper, even though it is better than PCA's result)
 
 ### Reference:
 [1] : Reducing the Dimensionality of Data with Neural Networks
